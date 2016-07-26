@@ -26,7 +26,7 @@ public class Jump : MonoBehaviour {
     }
   }
 
-  bool IsGrounded ()
+  public bool IsGrounded ()
   {
     return Physics.Raycast(body.transform.position, -Vector3.up, distToGround + 0.1f);
   }
