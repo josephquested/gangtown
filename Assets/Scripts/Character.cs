@@ -5,7 +5,8 @@ public class Character : MonoBehaviour
 {
 	Movement movement;
 	Jump jump;
-	// public Weapon weapon;
+
+	public Weapon rightWeapon;
 
 	void Awake ()
 	{
@@ -25,9 +26,9 @@ public class Character : MonoBehaviour
 
 	public void RecieveFireInput (bool fire1)
 	{
-		// if (fire1)
-		// {
-		// 	weapon.RecieveFireInput();
-		// }
+		if (fire1)
+		{
+			rightWeapon.RecieveFireInput();
+		}
 	}
 }
