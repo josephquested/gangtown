@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour {
 		}
 		if (!jump.IsGrounded())
 		{
-			speed = baseSpeed / 2;
+			speed = baseSpeed / 2.5f;
 			return;
 		}
 		speed = baseSpeed;
