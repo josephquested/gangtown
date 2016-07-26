@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 	{
 		CursorInput();
 		MovementInput();
+		JumpInput();
 		// FireInput();
 	}
 
@@ -28,6 +29,14 @@ public class PlayerInput : MonoBehaviour
 	void FireInput ()
 	{
 		// character.RecieveFireInput(Input.GetButtonDown("Fire1"));
+	}
+
+	void JumpInput ()
+	{
+		if (Input.GetButtonDown("Jump"))
+		{
+			character.RecieveJumpInput();
+		}
 	}
 
 	void CursorInput ()
