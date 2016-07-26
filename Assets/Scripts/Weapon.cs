@@ -3,16 +3,16 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
   Animator weaponAnimator;
-  Animator parentAnimator;
+
+  public string type = "stab";
 
   void Start ()
   {
     weaponAnimator = GetComponent<Animator>();
-    parentAnimator = transform.parent.GetComponent<Animator>();
   }
 
-  public void RecieveFireInput ()
+  public void RecieveAttackInput ()
   {
-    parentAnimator.SetTrigger("melee");
+    print("weapon attack!");
   }
 }

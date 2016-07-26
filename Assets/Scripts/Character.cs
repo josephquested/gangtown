@@ -4,13 +4,13 @@ using System.Collections;
 public class Character : MonoBehaviour
 {
 	Movement movement;
+	Attack attack;
 	Jump jump;
-
-	public Weapon rightWeapon;
 
 	void Awake ()
 	{
 		movement = GetComponent<Movement>();
+		attack = GetComponent<Attack>();
 		jump = GetComponent<Jump>();
 	}
 
@@ -24,11 +24,11 @@ public class Character : MonoBehaviour
 		jump.ProcessJump();
 	}
 
-	public void RecieveFireInput (bool fire1)
+	public void RecieveAttackInput (bool fire1)
 	{
 		if (fire1)
 		{
-			rightWeapon.RecieveFireInput();
+			attack.RecieveAttackInput("right");
 		}
 	}
 }
