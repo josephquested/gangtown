@@ -14,16 +14,21 @@ public class CameraController : MonoBehaviour {
 
 	void FixedUpdate ()
 	{
-		if (trackPlayer)
+    TrackPlayer();
+    UpdateZoom();
+	}
+
+  void TrackPlayer ()
+  {
+    if (trackPlayer)
 		{
 			transform.position = new Vector3(
 			target.position.x,
-			20,
-			target.position.z - 20
+			50,
+			target.position.z - 50
 			);
 		}
-    UpdateZoom();
-	}
+  }
 
   void UpdateZoom ()
   {
