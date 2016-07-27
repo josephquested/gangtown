@@ -2,17 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
-  Animator weaponAnimator;
+  Animator animator;
 
   public string type = "stab";
 
   void Start ()
   {
-    weaponAnimator = GetComponent<Animator>();
+    animator = GetComponent<Animator>();
   }
 
   public void RecieveAttackInput ()
   {
-    print("weapon attack!");
+    print("stab!");
+    animator.SetTrigger(type);
   }
 }
