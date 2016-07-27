@@ -10,6 +10,11 @@ public class Weapon : MonoBehaviour {
     animator = GetComponent<Animator>();
   }
 
+  public void Unequip ()
+  {
+    animator.enabled = false;
+  }
+
   public void Pickup (GameObject parent)
   {
     transform.parent = parent.transform;

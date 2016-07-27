@@ -16,10 +16,21 @@ public class PickupController : MonoBehaviour
 	{
 		if (pickups.Count > 0)
 		{
-			print(pickups[0].GetComponent<Weapon>());
-			print(hand);
-			attack.Equip(pickups[0].GetComponent<Weapon>(), hand);
+			attack.Equip(ClosestPickup(), hand);
 		}
+	}
+
+	Weapon ClosestPickup ()
+	{
+		Weapon closestPickup = pickups[0].GetComponent<Weapon>();
+ 		float dist = Vector3.Distance(transform.parent.transform.position, pickups[0].transform.position);
+		for (int i = 0; i < pickups.Count; i++)
+		{
+			float tempDist = Vector3.Distance(transform.parent.transform.position, pickups[i].transform.position);
+			if (tempDist < dist) closestPickup = pickups[i].GetComponent<Weapon>();
+		}
+
+		return closestPickup;
 	}
 
 	void OnTriggerEnter (Collider collider)

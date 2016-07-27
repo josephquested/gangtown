@@ -39,8 +39,24 @@ public class Attack : MonoBehaviour {
 
   public void Equip (Weapon weapon, string hand)
   {
-    if (hand == "right") rightWeapon = weapon;
-    if (hand == "left") leftWeapon = weapon;
+    if (hand == "right")
+    {
+      if (rightWeapon != null) Throw(rightWeapon);
+      rightWeapon = weapon;
+    }
+    if (hand == "left")
+    {
+      if (leftWeapon != null) Throw(leftWeapon);
+      leftWeapon = weapon;
+    }
     weapon.Pickup(gameObject);
+  }
+
+  void Throw (Weapon weapon)
+  {
+    weapon.Unequip();
+    weapon.transform.parent = null;
+    weapon.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+
   }
 }
