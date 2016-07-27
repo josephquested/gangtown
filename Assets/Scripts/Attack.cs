@@ -36,4 +36,11 @@ public class Attack : MonoBehaviour {
     animator.SetTrigger(hand);
     animator.SetTrigger("stab");
   }
+
+  public void Equip (Weapon weapon, string hand)
+  {
+    if (hand == "right") rightWeapon = weapon;
+    if (hand == "left") leftWeapon = weapon;
+    weapon.Pickup(gameObject);
+  }
 }

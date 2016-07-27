@@ -10,15 +10,7 @@ public class Weapon : MonoBehaviour {
     animator = GetComponent<Animator>();
   }
 
-  void Update ()
-  {
-    if (Input.GetButtonDown("Jump"))
-    {
-      Pickup(GameObject.FindWithTag("Player"));
-    }
-  }
-
-  void Pickup (GameObject parent)
+  public void Pickup (GameObject parent)
   {
     transform.parent = parent.transform;
     animator.enabled = true;
@@ -26,7 +18,6 @@ public class Weapon : MonoBehaviour {
 
   public void RecieveAttackInput ()
   {
-    print("stab!");
     animator.SetTrigger(type);
   }
 }
