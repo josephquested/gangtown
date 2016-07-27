@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour {
   Weapon weapon;
   public Weapon rightWeapon;
   public Weapon leftWeapon;
+  public Transform throwSpawn;
 
   void Start ()
   {
@@ -52,11 +53,12 @@ public class Attack : MonoBehaviour {
     weapon.Pickup(gameObject);
   }
 
-  void Throw (Weapon weapon)
+  void Throw (Weapon oldWeapon)
   {
-    weapon.Unequip();
-    weapon.transform.parent = null;
-    weapon.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
-
+    oldWeapon.Unequip();
+    oldWeapon.transform.rotation = Quaternion.Euler(90, transform.eulerAngles.y, transform.rotation.z);
+    oldWeapon.transform.position = throwSpawn.position;
+    var vForce = Quaternion.AngleAxis(transform.eulerAngles.y, Vector3.forward) * Vector3.right;
+    weapon.GetComponent<Rigidbody>().AddForce(vForce * 100);
   }
 }

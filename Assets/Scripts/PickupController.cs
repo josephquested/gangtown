@@ -29,7 +29,6 @@ public class PickupController : MonoBehaviour
 			float tempDist = Vector3.Distance(transform.parent.transform.position, pickups[i].transform.position);
 			if (tempDist < dist) closestPickup = pickups[i].GetComponent<Weapon>();
 		}
-
 		return closestPickup;
 	}
 

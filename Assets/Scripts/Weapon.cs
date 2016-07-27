@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour {
   public void Unequip ()
   {
     animator.enabled = false;
+    transform.parent = null;
   }
 
   public void Pickup (GameObject parent)
