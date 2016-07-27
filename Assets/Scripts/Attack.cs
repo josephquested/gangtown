@@ -33,6 +33,7 @@ public class Attack : MonoBehaviour {
 
   void Melee (string hand)
   {
-
+    animator.SetTrigger(hand);
+    animator.SetTrigger("stab");
   }
 }
