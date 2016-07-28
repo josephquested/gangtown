@@ -30,6 +30,7 @@ public class Character : MonoBehaviour
 	{
 		attack.Throw(hand);
 		pickupController.PickupClosest(hand);
+		attack.lastThrown = null;
 	}
 
 	public void RecieveAttackInput (bool fire1)

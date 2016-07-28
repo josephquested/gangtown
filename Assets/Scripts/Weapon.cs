@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
   Animator animator;
-  Rigidbody rb;
+  protected Rigidbody rb;
   public string type = "stab";
   public float throwSpeed;
+  public bool equipped = false;
 
   void Start ()
   {
@@ -21,6 +22,7 @@ public class Weapon : MonoBehaviour {
 
   public void Pickup (GameObject parent)
   {
+    equipped = true;
     transform.parent = parent.transform;
     animator.enabled = true;
   }
@@ -30,8 +32,9 @@ public class Weapon : MonoBehaviour {
     animator.SetTrigger(type);
   }
 
-  public void Throw (Transform parentTransform, Transform throwSpawn)
+  public virtual void Throw (Transform parentTransform, Transform throwSpawn)
   {
+    equipped = false;
     transform.rotation = Quaternion.Euler(90, parentTransform.eulerAngles.y, parentTransform.rotation.z);
     transform.position = throwSpawn.position;
     rb.velocity = Vector3.zero;
