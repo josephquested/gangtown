@@ -56,9 +56,6 @@ public class Attack : MonoBehaviour {
   void Throw (Weapon oldWeapon)
   {
     oldWeapon.Unequip();
-    oldWeapon.transform.rotation = Quaternion.Euler(90, transform.eulerAngles.y, transform.rotation.z);
-    oldWeapon.transform.position = throwSpawn.position;
-    var vForce = Quaternion.AngleAxis(transform.eulerAngles.y, Vector3.forward) * Vector3.right;
-    weapon.GetComponent<Rigidbody>().AddForce(vForce * 100);
+    oldWeapon.Throw(transform, throwSpawn);
   }
 }
