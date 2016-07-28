@@ -14,7 +14,7 @@ public class PickupController : MonoBehaviour
 
 	public void PickupClosest (string hand)
 	{
-		if (pickups.Count > 0)
+		if (pickups.Count > 0 && ClosestPickup() != null)
 		{
 			attack.Equip(ClosestPickup(), hand);
 		}
@@ -26,9 +26,11 @@ public class PickupController : MonoBehaviour
  		float dist = Vector3.Distance(transform.parent.transform.position, pickups[0].transform.position);
 		for (int i = 0; i < pickups.Count; i++)
 		{
+			Weapon weapon = pickups[i].GetComponent<Weapon>();
 			float tempDist = Vector3.Distance(transform.parent.transform.position, pickups[i].transform.position);
-			if (tempDist < dist) closestPickup = pickups[i].GetComponent<Weapon>();
+			if (tempDist < dist && weapon != attack.lastThrown) closestPickup = weapon;
 		}
+		if (closestPickup == attack.lastThrown) return null;
 		return closestPickup;
 	}
 

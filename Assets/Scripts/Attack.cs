@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour {
   public Weapon rightWeapon;
   public Weapon leftWeapon;
   public Transform throwSpawn;
+  public Weapon lastThrown;
 
   void Start ()
   {
@@ -38,24 +39,31 @@ public class Attack : MonoBehaviour {
     animator.SetTrigger("stab");
   }
 
-  public void Equip (Weapon weapon, string hand)
+  public void Equip (Weapon newWeapon, string hand)
   {
-    if (hand == "right")
-    {
-      if (rightWeapon != null) Throw(rightWeapon);
-      rightWeapon = weapon;
-    }
-    if (hand == "left")
-    {
-      if (leftWeapon != null) Throw(leftWeapon);
-      leftWeapon = weapon;
-    }
-    weapon.Pickup(gameObject);
+    if (hand == "right") rightWeapon = newWeapon;
+    if (hand == "left") leftWeapon = newWeapon;
+    newWeapon.Pickup(gameObject);
   }
 
-  void Throw (Weapon oldWeapon)
+  public void Throw (string hand)
   {
-    oldWeapon.Unequip();
-    oldWeapon.Throw(transform, throwSpawn);
+    Weapon throwWeapon = null;
+    if (hand == "left" && leftWeapon != null)
+    {
+      throwWeapon = leftWeapon;
+      leftWeapon = null;
+    }
+    if (hand == "right" && rightWeapon != null)
+    {
+      throwWeapon = rightWeapon;
+      rightWeapon = null;
+    }
+    if (throwWeapon != null)
+    {
+      throwWeapon.Unequip();
+      throwWeapon.Throw(transform, throwSpawn);
+      lastThrown = throwWeapon;
+    }
   }
 }
