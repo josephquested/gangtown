@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour {
       return;
     }
     AnimateAttack(hand, weapon.type);
-    weapon.RecieveAttackInput();
+    weapon.RecieveAttackInput(hand);
   }
 
   void AnimateAttack (string hand, string type)
@@ -43,7 +43,7 @@ public class Attack : MonoBehaviour {
   {
     if (hand == "right") rightWeapon = newWeapon;
     if (hand == "left") leftWeapon = newWeapon;
-    newWeapon.Pickup(gameObject);
+    newWeapon.Pickup(gameObject, hand);
   }
 
   public void Throw (string hand)

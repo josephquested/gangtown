@@ -4,7 +4,7 @@ using System.Collections;
 public class Weapon : MonoBehaviour {
   Animator animator;
   protected Rigidbody rb;
-  public string type = "stab";
+  public string type;
   public float throwSpeed;
   public bool equipped = false;
 
@@ -16,20 +16,23 @@ public class Weapon : MonoBehaviour {
 
   public void Unequip ()
   {
+    animator.Rebind();
     animator.enabled = false;
     transform.parent = null;
   }
 
-  public void Pickup (GameObject parent)
+  public void Pickup (GameObject parent, string hand)
   {
     equipped = true;
     transform.parent = parent.transform;
     animator.enabled = true;
+    animator.SetTrigger(hand);
   }
 
-  public void RecieveAttackInput ()
+  public void RecieveAttackInput (string hand)
   {
     animator.SetTrigger(type);
+    animator.SetTrigger(hand);
   }
 
   public virtual void Throw (Transform parentTransform, Transform throwSpawn)

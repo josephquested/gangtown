@@ -33,11 +33,15 @@ public class Character : MonoBehaviour
 		attack.lastThrown = null;
 	}
 
-	public void RecieveAttackInput (bool fire1)
+	public void RecieveAttackInput (bool fire1, bool fire2)
 	{
 		if (fire1)
 		{
 			attack.RecieveAttackInput("right");
+		}
+		if (fire2)
+		{
+			attack.RecieveAttackInput("left");
 		}
 	}
 }
