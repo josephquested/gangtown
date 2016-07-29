@@ -26,10 +26,11 @@ public class Character : MonoBehaviour
 		jump.ProcessJump();
 	}
 
-	public void RecieveHandInput (string hand)
+	public void RecieveHandInput (string input)
 	{
-		attack.Throw(hand);
-		pickupController.PickupClosest(hand);
+		print("hand input " + input);
+		attack.Throw(input);
+		pickupController.PickupClosest(input);
 		attack.lastThrown = null;
 	}
 

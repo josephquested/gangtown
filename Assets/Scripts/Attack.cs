@@ -5,8 +5,8 @@ public class Attack : MonoBehaviour
 {
   Animator animator;
   Weapon weapon;
-  public Weapon rightWeapon;
-  public Weapon leftWeapon;
+  public Hand leftHand;
+  public Hand rightHand;
   public Transform throwSpawn;
   public Weapon lastThrown;
 
@@ -15,55 +15,46 @@ public class Attack : MonoBehaviour
     animator = GetComponent<Animator>();
   }
 
-  public void RecieveAttackInput (string hand)
+  public void RecieveAttackInput (string input)
   {
-    if (hand == "right") weapon = rightWeapon;
-    if (hand == "left") weapon = leftWeapon;
-    if (weapon == null)
+    Hand hand = GetHandFromString(input);
+    if (hand.weapon == null)
     {
       Melee(hand);
       return;
     }
-    AnimateAttack(hand, weapon.type);
-    weapon.RecieveAttackInput(hand);
+    hand.AnimateAttack("stab");
+    hand.weapon.RecieveAttackInput(input);
   }
 
-  void AnimateAttack (string hand, string type)
+  void Melee (Hand hand)
   {
-    animator.SetTrigger(hand);
-    animator.SetTrigger(type);
+    hand.AnimateAttack("stab");
   }
 
-  void Melee (string hand)
+  public void Equip (Weapon newWeapon, string input)
   {
-    AnimateAttack(hand, "stab");
+    GetHandFromString(input).weapon = newWeapon;
+    newWeapon.Pickup(gameObject, input);
   }
 
-  public void Equip (Weapon newWeapon, string hand)
+  public void Throw (string input)
   {
-    if (hand == "right") rightWeapon = newWeapon;
-    if (hand == "left") leftWeapon = newWeapon;
-    newWeapon.Pickup(gameObject, hand);
-  }
-
-  public void Throw (string hand)
-  {
-    Weapon throwWeapon = null;
-    if (hand == "left" && leftWeapon != null)
+    Hand hand = GetHandFromString(input);
+    if (hand.weapon != null)
     {
-      throwWeapon = leftWeapon;
-      leftWeapon = null;
-    }
-    if (hand == "right" && rightWeapon != null)
-    {
-      throwWeapon = rightWeapon;
-      rightWeapon = null;
-    }
-    if (throwWeapon != null)
-    {
+      Weapon throwWeapon = hand.weapon;
+      hand.weapon = null;
       throwWeapon.Unequip();
       throwWeapon.Throw(transform, throwSpawn);
       lastThrown = throwWeapon;
     }
+  }
+
+  Hand GetHandFromString (string input)
+  {
+    if (input == "right") return rightHand;
+    if (input == "left") return leftHand;
+    return null;
   }
 }

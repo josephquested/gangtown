@@ -41,4 +41,9 @@ public class Weapon : MonoBehaviour
   {
     // override me
   }
+
+  public void Attack ()
+  {
+    print("attack!");
+  }
 }

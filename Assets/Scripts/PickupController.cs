@@ -16,6 +16,7 @@ public class PickupController : MonoBehaviour
 	{
 		if (pickups.Count > 0 && ClosestPickup() != null)
 		{
+			print("pickup controller " + hand);
 			attack.Equip(ClosestPickup(), hand);
 		}
 	}
