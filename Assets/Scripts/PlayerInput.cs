@@ -31,7 +31,10 @@ public class PlayerInput : MonoBehaviour
 	{
 		if (!Input.GetButton("Hand"))
 		{
-			character.RecieveAttackInput(Input.GetButtonDown("Fire1"), Input.GetButtonDown("Fire2"));
+			character.RecieveAttackInput(
+				Input.GetButtonDown("Fire1"),
+				Input.GetButtonDown("Fire2")
+			);
 		}
 	}
 

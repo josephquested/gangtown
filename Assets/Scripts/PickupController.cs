@@ -27,10 +27,13 @@ public class PickupController : MonoBehaviour
 		for (int i = 0; i < pickups.Count; i++)
 		{
 			Weapon weapon = pickups[i].GetComponent<Weapon>();
-			float tempDist = Vector3.Distance(transform.parent.transform.position, pickups[i].transform.position);
-			if (tempDist < dist && weapon != attack.lastThrown) closestPickup = weapon;
+			if (!weapon.equipped && weapon != attack.lastThrown)
+			{
+				float tempDist = Vector3.Distance(transform.parent.transform.position, pickups[i].transform.position);
+				if (tempDist < dist) closestPickup = weapon;
+			}
 		}
-		if (closestPickup == attack.lastThrown) return null;
+		if (closestPickup == attack.lastThrown || closestPickup.equipped) return null;
 		return closestPickup;
 	}
 

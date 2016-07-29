@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class Attack : MonoBehaviour {
+public class Attack : MonoBehaviour
+{
   Animator animator;
   Weapon weapon;
   public Weapon rightWeapon;
@@ -35,8 +36,7 @@ public class Attack : MonoBehaviour {
 
   void Melee (string hand)
   {
-    animator.SetTrigger(hand);
-    animator.SetTrigger("stab");
+    AnimateAttack(hand, "stab");
   }
 
   public void Equip (Weapon newWeapon, string hand)

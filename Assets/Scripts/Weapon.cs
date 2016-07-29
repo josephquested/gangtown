@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : MonoBehaviour
+{
   Animator animator;
   protected Rigidbody rb;
   public string type;
@@ -16,6 +17,7 @@ public class Weapon : MonoBehaviour {
 
   public void Unequip ()
   {
+    equipped = false;
     animator.Rebind();
     animator.enabled = false;
     transform.parent = null;
@@ -25,8 +27,8 @@ public class Weapon : MonoBehaviour {
   {
     equipped = true;
     transform.parent = parent.transform;
-    animator.enabled = true;
     animator.SetTrigger(hand);
+    animator.enabled = true;
   }
 
   public void RecieveAttackInput (string hand)
@@ -37,10 +39,6 @@ public class Weapon : MonoBehaviour {
 
   public virtual void Throw (Transform parentTransform, Transform throwSpawn)
   {
-    equipped = false;
-    transform.rotation = Quaternion.Euler(90, parentTransform.eulerAngles.y, parentTransform.rotation.z);
-    transform.position = throwSpawn.position;
-    rb.velocity = Vector3.zero;
-    rb.AddForce(transform.up * throwSpeed);
+    // override me
   }
 }
