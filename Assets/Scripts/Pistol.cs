@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Pistol : Weapon
 {
-  public override void RecieveAttackInput (string hand)
+  public override void RecieveAttackInput (Hand hand)
   {
     print("pistol attack input!");
   }

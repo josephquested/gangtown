@@ -5,6 +5,12 @@ public class Knife : Weapon
 {
   public bool airborne = false;
 
+  public override void RecieveAttackInput (Hand hand)
+  {
+    animator.SetTrigger(type);
+    animator.SetTrigger(hand.whichHand);
+  }
+
   public override void Throw (Transform parentTransform, Transform throwSpawn)
   {
     airborne = true;

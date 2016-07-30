@@ -4,37 +4,30 @@ using System.Collections.Generic;
 
 public class PickupController : MonoBehaviour
 {
-	Attack attack;
 	public List<GameObject> pickups = new List<GameObject>();
 
-	void Start ()
+	public void PickupClosest (Hand hand)
 	{
-		attack = transform.parent.GetComponent<Attack>();
-	}
-
-	public void PickupClosest (string hand)
-	{
-		if (pickups.Count > 0 && ClosestPickup() != null)
+		if (pickups.Count > 0 && ClosestPickup(hand) != null)
 		{
-			print("pickup controller " + hand);
-			attack.Equip(ClosestPickup(), hand);
+			hand.Equip(ClosestPickup(hand));
 		}
 	}
 
-	Weapon ClosestPickup ()
+	Weapon ClosestPickup (Hand hand)
 	{
 		Weapon closestPickup = pickups[0].GetComponent<Weapon>();
  		float dist = Vector3.Distance(transform.parent.transform.position, pickups[0].transform.position);
 		for (int i = 0; i < pickups.Count; i++)
 		{
 			Weapon weapon = pickups[i].GetComponent<Weapon>();
-			if (!weapon.equipped && weapon != attack.lastThrown)
+			if (!weapon.equipped && weapon != hand.lastThrown)
 			{
 				float tempDist = Vector3.Distance(transform.parent.transform.position, pickups[i].transform.position);
 				if (tempDist < dist) closestPickup = weapon;
 			}
 		}
-		if (closestPickup == attack.lastThrown || closestPickup.equipped) return null;
+		if (closestPickup == hand.lastThrown || closestPickup.equipped) return null;
 		return closestPickup;
 	}
 

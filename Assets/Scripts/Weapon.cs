@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
-  Animator animator;
+  protected Animator animator;
   protected Rigidbody rb;
+
   public string type;
   public float throwSpeed;
   public bool equipped = false;
@@ -13,6 +14,16 @@ public class Weapon : MonoBehaviour
   {
     animator = GetComponent<Animator>();
     rb = GetComponent<Rigidbody>();
+  }
+
+  public virtual void RecieveAttackInput (Hand hand)
+  {
+    // override me
+  }
+
+  public virtual void Throw (Transform parentTransform, Transform throwSpawn)
+  {
+    // override me
   }
 
   public void Unequip ()
@@ -29,21 +40,5 @@ public class Weapon : MonoBehaviour
     transform.parent = parent.transform;
     animator.SetTrigger(hand);
     animator.enabled = true;
-  }
-
-  public virtual void RecieveAttackInput (string hand)
-  {
-    animator.SetTrigger(type);
-    animator.SetTrigger(hand);
-  }
-
-  public virtual void Throw (Transform parentTransform, Transform throwSpawn)
-  {
-    // override me
-  }
-
-  public void Attack ()
-  {
-    print("attack!");
   }
 }

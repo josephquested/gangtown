@@ -3,14 +3,15 @@ using System.Collections;
 
 public class Character : MonoBehaviour
 {
-	PickupController pickupController;
 	Movement movement;
 	Attack attack;
 	Jump jump;
 
+	public Hand leftHand;
+	public Hand rightHand;
+
 	void Awake ()
 	{
-		pickupController = GetComponentInChildren<PickupController>();
 		movement = GetComponent<Movement>();
 		attack = GetComponent<Attack>();
 		jump = GetComponent<Jump>();
@@ -28,20 +29,21 @@ public class Character : MonoBehaviour
 
 	public void RecieveHandInput (string input)
 	{
-		attack.Throw(input);
-		pickupController.PickupClosest(input);
-		attack.lastThrown = null;
+		print("hand input!");
+		if (input == "right") rightHand.RecieveHandInput();
+		if (input == "left") leftHand.RecieveHandInput();
 	}
 
 	public void RecieveAttackInput (bool fire1, bool fire2)
 	{
 		if (fire1)
 		{
-			attack.RecieveAttackInput("right");
+			print("attack input!");
+			attack.RecieveAttackInput(rightHand);
 		}
 		if (fire2)
 		{
-			attack.RecieveAttackInput("left");
+			attack.RecieveAttackInput(leftHand);
 		}
 	}
 }
