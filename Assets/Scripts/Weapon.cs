@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
     animator.enabled = true;
   }
 
-  public void RecieveAttackInput (string hand)
+  public virtual void RecieveAttackInput (string hand)
   {
     animator.SetTrigger(type);
     animator.SetTrigger(hand);

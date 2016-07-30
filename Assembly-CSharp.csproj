@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Knife.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\PickupController.cs" />
+     <Compile Include="Assets\Scripts\Pistol.cs" />
      <Compile Include="Assets\Scripts\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
  <Reference Include="UnityEngine.UI">

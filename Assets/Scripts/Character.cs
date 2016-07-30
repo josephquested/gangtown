@@ -28,7 +28,6 @@ public class Character : MonoBehaviour
 
 	public void RecieveHandInput (string input)
 	{
-		print("hand input " + input);
 		attack.Throw(input);
 		pickupController.PickupClosest(input);
 		attack.lastThrown = null;

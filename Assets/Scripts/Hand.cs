@@ -20,4 +20,15 @@ public class Hand : MonoBehaviour
   {
     animator.SetTrigger(type);
   }
+
+	public void SetIdleAnimation (string type)
+	{
+		animator.Rebind();
+		animator.SetTrigger(type);
+	}
+
+	public void ResetAnimator ()
+	{
+		animator.Rebind();
+	}
 }

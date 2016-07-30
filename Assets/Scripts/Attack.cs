@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
       Melee(hand);
       return;
     }
-    hand.AnimateAttack("stab");
+    hand.AnimateAttack(hand.weapon.type);
     hand.weapon.RecieveAttackInput(input);
   }
 
@@ -34,7 +34,9 @@ public class Attack : MonoBehaviour
 
   public void Equip (Weapon newWeapon, string input)
   {
-    GetHandFromString(input).weapon = newWeapon;
+    Hand hand = GetHandFromString(input);
+    hand.weapon = newWeapon;
+    hand.SetIdleAnimation(newWeapon.type);
     newWeapon.Pickup(gameObject, input);
   }
 
@@ -45,6 +47,7 @@ public class Attack : MonoBehaviour
     {
       Weapon throwWeapon = hand.weapon;
       hand.weapon = null;
+      hand.ResetAnimator();
       throwWeapon.Unequip();
       throwWeapon.Throw(transform, throwSpawn);
       lastThrown = throwWeapon;
