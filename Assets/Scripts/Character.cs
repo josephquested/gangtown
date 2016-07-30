@@ -29,7 +29,6 @@ public class Character : MonoBehaviour
 
 	public void RecieveHandInput (string input)
 	{
-		print("hand input!");
 		if (input == "right") rightHand.RecieveHandInput();
 		if (input == "left") leftHand.RecieveHandInput();
 	}
@@ -38,7 +37,6 @@ public class Character : MonoBehaviour
 	{
 		if (fire1)
 		{
-			print("attack input!");
 			attack.RecieveAttackInput(rightHand);
 		}
 		if (fire2)

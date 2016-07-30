@@ -3,9 +3,27 @@ using System.Collections;
 
 public class Pistol : Weapon
 {
+  public GameObject bulletPrefab;
+  public Transform bulletSpawn;
+
   public override void RecieveAttackInput (Hand hand)
   {
-    print("pistol attack input!");
+    Fire();
+  }
+
+  void Fire ()
+  {
+    GameObject bullet = (GameObject)Instantiate(
+      bulletPrefab,
+      bulletSpawn.position,
+      Quaternion.Euler(
+        90,
+        transform.parent.rotation.y,
+        0
+      )
+    );
+    print(bullet.transform.rotation);
+    bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
   }
 
   public override void Throw (Transform parentTransform, Transform throwSpawn)
