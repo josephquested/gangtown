@@ -2,8 +2,23 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
+	bool active;
+
+	void Awake ()
+	{
+		Destroy(gameObject, 5f);
+	}
+
 	void OnTriggerEnter (Collider collider)
 	{
-		Destroy(gameObject);
+		if (active)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+	void OnTriggerExit (Collider collider)
+	{
+		active = true;
 	}
 }
