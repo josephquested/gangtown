@@ -77,7 +77,6 @@
 'Assets/Scripts/CameraController.cs'
 'Assets/Scripts/Character.cs'
 'Assets/Scripts/Hand.cs'
-'Assets/Scripts/Jump.cs'
 'Assets/Scripts/Knife.cs'
 'Assets/Scripts/Movement.cs'
 'Assets/Scripts/PickupController.cs'

@@ -5,26 +5,18 @@ public class Character : MonoBehaviour
 {
 	Movement movement;
 	Attack attack;
-	Jump jump;
-
 	public Hand leftHand;
 	public Hand rightHand;
 
 	void Awake ()
 	{
-		movement = GetComponent<Movement>();
 		attack = GetComponent<Attack>();
-		jump = GetComponent<Jump>();
+		movement = GetComponent<Movement>();
 	}
 
-	public void RecieveMovementInput (float horizontal, float vertial)
+	public void RecieveMovementInput (float horizontal, float vertial, bool jump)
 	{
-		movement.Move(horizontal, vertial);
-	}
-
-	public void RecieveJumpInput ()
-	{
-		jump.ProcessJump();
+		movement.RecieveMovementInput(horizontal, vertial, jump);
 	}
 
 	public void RecieveHandInput (string input)

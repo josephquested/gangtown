@@ -2,38 +2,32 @@ using UnityEngine;
 using System.Collections;
 
 public class Movement : MonoBehaviour {
-	Rigidbody rb;
-	Jump jump;
-	public float speed;
-
-	public float baseSpeed;
+	CharacterController controller;
+	Vector3 moveDirection = Vector3.zero;
+	public float speed = 6.0F;
+	public float jumpSpeed = 8.0F;
+	public float gravity = 20.0F;
 
 	void Awake ()
 	{
-		rb = GetComponent<Rigidbody>();
-		jump = GetComponent<Jump>();
+		controller = GetComponent<CharacterController>();
 	}
 
-	public void Move (float horizontal, float vertical)
+	public void RecieveMovementInput (float horizontal, float vertical, bool jump)
 	{
-		UpdateMovementClamp(horizontal, vertical);
-		Vector3 movement = new Vector3(horizontal, 0, vertical);
-		rb.AddForce(movement * speed);
-	}
-
-	void UpdateMovementClamp (float horizontal, float vertical)
-	{
-		if (horizontal != 0 && vertical != 0)
+		if (controller.isGrounded)
 		{
-			speed = baseSpeed / 1.5f;
-			return;
+	   moveDirection = new Vector3(horizontal, 0, vertical);
+	   moveDirection *= speed;
+	   if (jump) moveDirection.y = jumpSpeed;
 		}
-
-		if (!jump.IsGrounded())
+		else
 		{
-			speed = baseSpeed / 2.5f;
-			return;
+	   moveDirection = new Vector3(horizontal, moveDirection.y, vertical);
+	   moveDirection.x *= speed / 1.5f;
+	   moveDirection.z *= speed / 1.5f;
 		}
-		speed = baseSpeed;
+		moveDirection.y -= gravity * Time.deltaTime;
+		controller.Move(moveDirection * Time.deltaTime);
 	}
 }

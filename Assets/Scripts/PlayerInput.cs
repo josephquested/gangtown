@@ -14,7 +14,6 @@ public class PlayerInput : MonoBehaviour
 	{
 		CursorInput();
 		MovementInput();
-		JumpInput();
 		HandInput();
 		AttackInput();
 	}
@@ -23,7 +22,8 @@ public class PlayerInput : MonoBehaviour
 	{
 		character.RecieveMovementInput(
 		Input.GetAxis("Horizontal"),
-		Input.GetAxis("Vertical")
+		Input.GetAxis("Vertical"),
+		Input.GetButtonDown("Jump")
 		);
 	}
 
@@ -35,14 +35,6 @@ public class PlayerInput : MonoBehaviour
 				Input.GetButtonDown("Fire1"),
 				Input.GetButtonDown("Fire2")
 			);
-		}
-	}
-
-	void JumpInput ()
-	{
-		if (Input.GetButtonDown("Jump"))
-		{
-			character.RecieveJumpInput();
 		}
 	}
 
