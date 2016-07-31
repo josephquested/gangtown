@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerExit (Collider collider)
 	{
+		if (collider.tag == "Solid") Destroy(gameObject);
 		active = true;
 	}
 }

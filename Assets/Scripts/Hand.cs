@@ -27,7 +27,7 @@ public class Hand : MonoBehaviour
 	public void Equip (Weapon newWeapon)
 	{
 		weapon = newWeapon;
-		SetIdleAnimation(weapon.type);
+		SetIdleAnimation(weapon.idleAnimation);
 		weapon.Pickup(transform.parent.gameObject, whichHand);
 	}
 
@@ -44,15 +44,15 @@ public class Hand : MonoBehaviour
     }
   }
 
-	public void AnimateAttack (string type)
+	public void AnimateAttack (string actionAnimation)
   {
-    animator.SetTrigger(type);
+    animator.SetTrigger(actionAnimation);
   }
 
-	public void SetIdleAnimation (string type)
+	public void SetIdleAnimation (string idleAnimation)
 	{
 		ResetAnimator();
-		animator.SetTrigger(type);
+		animator.SetTrigger(idleAnimation);
 	}
 
 	public void ResetAnimator ()

@@ -7,7 +7,7 @@ public class Knife : Weapon
 
   public override void RecieveAttackInput (Hand hand)
   {
-    animator.SetTrigger(type);
+    animator.SetTrigger(actionAnimation);
     animator.SetTrigger(hand.whichHand);
   }
 
@@ -22,11 +22,14 @@ public class Knife : Weapon
 
   void OnTriggerEnter (Collider collider)
   {
-    if (!equipped && airborne)
+    if (collider.tag == "Solid")
     {
-      airborne = false;
-      rb.velocity = Vector3.zero;
-      rb.constraints = RigidbodyConstraints.FreezeAll;
+      if (!equipped && airborne)
+      {
+        airborne = false;
+        rb.velocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+      }
     }
     if (equipped)
     {

@@ -9,6 +9,7 @@ public class Pistol : Weapon
   public override void RecieveAttackInput (Hand hand)
   {
     Fire();
+    animator.SetTrigger(actionAnimation);
   }
 
   void Fire ()

@@ -6,7 +6,8 @@ public class Weapon : MonoBehaviour
   protected Animator animator;
   protected Rigidbody rb;
 
-  public string type;
+  public string idleAnimation;
+  public string actionAnimation;
   public float throwSpeed;
   public bool equipped = false;
 

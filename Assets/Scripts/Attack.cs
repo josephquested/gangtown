@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
       Melee(hand);
       return;
     }
-    hand.AnimateAttack(hand.weapon.type);
+    hand.AnimateAttack(hand.weapon.actionAnimation);
     hand.weapon.RecieveAttackInput(hand);
   }
 
